@@ -1,0 +1,168 @@
+{% extends "header.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block header %}
+<header>
+    <div id="logo">
+        <a href="/index" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+        <a href="/index" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="/index" >Home</a></li>
+            <li class="nav-item"><a href="/my_order">My Order</a></li>
+            <li class="nav-item"><a href="/logout">Logout</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container{
+            background-color: wheat;
+            height: 400px;
+            margin-top: 5px;
+            width: 400px;
+
+        }
+        .form-style-1 {
+            margin:10px auto;
+            max-width: 400px;
+            padding: 20px 12px 10px 20px;
+            font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        }
+        .form-style-1 li {
+            padding: 0;
+            display: block;
+            list-style: none;
+            margin: 10px 0 0 0;
+        }
+        .form-style-1 label{
+            margin:0 0 3px 0;
+            padding:0px;
+            display:block;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .form-style-1 input{
+            border-radius: 5px;
+            border: 1px solid white;
+            margin-top: 6px;
+            margin-left: 1px;
+            margin-right: 25px;
+        }
+        .form-style-1 input[type=text],
+        .form-style-1 input[type=date],
+        .form-style-1 input[type=datetime],
+        .form-style-1 input[type=number],
+        .form-style-1 input[type=search],
+        .form-style-1 input[type=time],
+        .form-style-1 input[type=url],
+        .form-style-1 input[type=email],
+        textarea,
+        select{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            border:1px solid #BEBEBE;
+            padding: 7px;
+            margin:0px;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;
+        }
+        .form-style-1 input[type=text]:focus,
+        .form-style-1 input[type=date]:focus,
+        .form-style-1 input[type=datetime]:focus,
+        .form-style-1 input[type=number]:focus,
+        .form-style-1 input[type=search]:focus,
+        .form-style-1 input[type=time]:focus,
+        .form-style-1 input[type=url]:focus,
+        .form-style-1 input[type=email]:focus,
+        .form-style-1 textarea:focus,
+        .form-style-1 select:focus{
+            -moz-box-shadow: 0 0 8px #88D5E9;
+            -webkit-box-shadow: 0 0 8px #88D5E9;
+            box-shadow: 0 0 8px #88D5E9;
+            border: 1px solid #88D5E9;
+        }
+        .form-style-1 .field-divided{
+            width: 49%;
+        }
+        
+        .form-style-1 .field-long{
+            width: 100%;
+        }
+        .form-style-1 .field-select{
+            width: 100%;
+        }
+        .form-style-1 .field-textarea{
+            height: 100px;
+        }
+        .form-style-1 input[type=submit], .form-style-1 input[type=button]{
+            /* background: #4B99AD; */
+            background-color: green;
+            padding: 8px 15px 8px 15px;
+            border: none;
+            color: #fff;
+        }
+        .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+            background: #4691A4;
+            box-shadow:none;
+            -moz-box-shadow:none;
+            -webkit-box-shadow:none;
+        }
+        .form-style-1 .required{
+            color:red;
+        }
+        </style>
+    </style>
+</head>
+<body>
+    {%if Item_in_cart%}
+    <div class="container">
+<form method="post">
+  {% csrf_token %}
+<ul class="form-style-1">
+    <li>
+        <label>Email <span class="required">*</span></label>
+        {% render_field placeorderForm.Email class="field-long" placeholder="Email" %}
+
+    </li>
+    <li>
+        <label>Mobile <span class="required">*</span></label>
+        {% render_field placeorderForm.Mobile class="field-long" placeholder="Mobile" %}
+    </li>
+
+    <li>
+        <label>Delivery Address <span class="required">*</span></label>
+        {% render_field placeorderForm.Address id="field5" class="field-long field-textarea" placeholder="Address,city, pin" %}
+
+    </li>
+    <li>
+        <input type="submit" name="online" value="Online Pay"  style="margin-left: 0;"/>
+        <input type="submit" name="cash" value="Cash On Delivery" />
+    </li>
+</ul>
+</form>
+    </div>
+{%else%}
+<br><br>
+<h1 style="text-align:center; color:red;"> First Add Item In Cart </h1>
+<br><br><br><br><br><br><br><br><br><br>
+{%endif%}
+
+</body>
+{% endblock %}
+

@@ -1,0 +1,112 @@
+{% extends "header.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %} 
+{% block header %}
+<header>
+    <div id="logo">
+        <a href="/index" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+        <a href="/index" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="/index" >Home</a></li>
+            <li class="nav-item"><a href="/cart">Cart</a></li>
+            <li class="nav-item"><a href="/my_order" >My Orders</a></li>
+            <li class="nav-item"><a href="/logout">Logout</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #c8c8c8;
+        }
+        .container{
+            justify-content: center;
+            display: grid;
+            font-size: large;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .site-form{
+            padding: 25px;
+            width: 100%;
+            border: 1px solid wheat;
+            border-radius: 9px;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: wheat;
+        }
+        button{
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 7px;
+            background-color: rgb(40, 204, 40);
+            font-size:larger;
+            width: 300px;
+            margin-left: 200px;
+            border: 1px solid rgb(40, 204, 40);
+            
+        }
+        .form-control{
+          border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h4 style="text-align: center;margin-top: 10px;font-weight:bold;">Edit Profile</h4>
+    <div class="container" style="margin-top: 20px;">
+      <div class="row" style="border: 1px solid white;border-radius: 7px;background-color: white; padding: 40px;">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="firstName">First name</label>
+            {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+          </div>
+          <div class="form-group">
+            <label for="username">User Name</label>
+            {% render_field userForm.username class="form-control" placeholder="Username" %}
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            {% render_field userForm.password class="form-control" placeholder="password" %}
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            {% render_field userForm.email class="form-control" placeholder="email" %}
+          </div>
+          <div class="form-group">
+            <label for="mobile">Contact</label>
+            {% render_field customerForm.mobile class="form-control" placeholder="Contact" %}
+          </div>
+          <div class="form-group">
+            <label for="profile_pic">Profile Pic</label>
+            {% render_field customerForm.profile_pic class="form-control" placeholder="Profile Picture" %}
+          </div>
+        <button type="submit" class="btnSubmit" >Update</button>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+          </div>
+          <div class="form-group">
+            <label for="address">Adress</label>
+            {% render_field customerForm.address class="form-control" placeholder="Address" %}
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+</form>
+
+</body>
+{% endblock content %}

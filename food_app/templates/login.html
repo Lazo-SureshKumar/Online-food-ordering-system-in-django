@@ -1,0 +1,109 @@
+{% extends "header.html" %}
+{% load static %}
+{% block header %}
+<header>
+    <div id="logo">
+        <a href="/home" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+        <a href="/home" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="/home" >Home</a></li>
+            <li class="profile-li"><a  href="/signup">Sign Up</a></li>
+            <li class="nav-item"><a href="/aboutus">About Us</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">    
+    <style>
+        body {
+  height: 100%;
+  text-align: center;
+  background-color: #c8c8c8;
+}
+
+.main-container {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px; 
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 430px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  width: 250px;
+  font-size: 16px;
+  margin-left: 70px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+    </style>
+</head>
+<body>    
+    {% for message in messages %}
+    <div class="alert alert-dismissible {{message.tags}}" role="alert" style="margin-left: 500px;margin-right: 500px;margin-top: 2px;margin-bottom: 6px;">
+      <div>{{message | safe }} </div>
+      <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+    <div class="main-container">
+        <form class="form-signin" action="{% url 'login' %}?next={{next}}" method="post">
+          {% csrf_token %}
+          {% if account_type %}
+            <input type='hidden' value="{{account_type}}" name="account_type">
+          {% endif %}
+            <h3 class="mb-3 font-weight-normal">Sign in</h3>
+            <h6 class="font-weight-light mb-4"> to continue </h6>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" class="form-control" placeholder="Username" name="username" required="" autofocus="" />
+            <br>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="" />
+            <button class="btn btn-lg btn-warning btn-block" type="submit">
+                Sign in
+            </button>
+          <hr/>
+            <a class="btn btn-link  btn-sm mt-4" href="{% url 'signup' %}" role="button" style="text-decoration: none;">Create an account</a>
+            <p class="mt-5 mb-3 text-muted">© 2023-2025</p>
+        </form>
+        </div>
+        </body>
+{% endblock content %}

@@ -1,0 +1,153 @@
+{% extends "header.html" %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %} 
+{% load static %}
+{% block header %}
+<header>
+    <div id="logo">
+        <a href="/home" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+        <a href="/home" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="/home" >Home</a></li>
+            <li class="nav-item"><a href="/login" >Login</a></li>
+            <li class="nav-item"><a href="/aboutus">About Us</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color: #c8c8c8;
+        }
+        .container{
+            justify-content: center;
+            display: grid;
+            font-size: large;
+            margin: 20px;
+        }
+        .site-form{
+            padding: 25px;
+            width: 100%;
+            border: 1px solid wheat;
+            border-radius: 9px;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: wheat;
+        }
+        .btn{
+            padding: 10px;
+            margin-top: 3px;
+            border-radius: 7px;
+            border: 1px solid rgb(9, 201, 9);
+            background-color: rgb(9, 201, 9);
+            font-size: large;
+        }
+        .form-control:focus {
+    z-index: 2;
+    }
+    .form-control{
+        width: 300px;
+    }
+    label{
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+   {% for message in messages %}
+    <div class="alert alert-dismissible {{message.tags}}" role="alert" style="margin-left: 500px;margin-right: 500px;margin-top: 2px;margin-bottom: 6px;">
+      <div>{{message | safe }} </div>
+      <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+  <div class="container mt-2">
+    <div class="row" style="border: 1px solid white;background-color: white;border-radius: 9px;padding-top: 20px;margin-left: 200px;height:fit-content;">
+        <div class="col-8 mx-auto ">
+            <div class="text-center mb-4">                
+                <h3>Create your Account</h3>
+            </div>
+            <form class="needs-validation mb-5" novalidate="" action="{% url 'signup' %}" method="post" >
+             {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label for="firstName">First name</label>
+                            {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <label for="lastName">Last name</label>
+                            {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+                        <div class="invalid-feedback">
+                            Valid last name is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                        </div>
+                            {% render_field userForm.username class="form-control" placeholder="Username" %}
+
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Your username is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email"  placeholder="you@example.com">
+                    <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password1">Password</label>
+                     {% render_field userForm.password class="form-control" placeholder="Password" %}
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password2">Address</label>
+                {% render_field customerForm.address class="form-control" placeholder="Address" %}
+                </div>
+                <div>
+                    <label for="password2">Mobile Number</label>
+                {% render_field customerForm.mobile class="form-control" placeholder="Contact" %}
+                </div>
+                <div>
+                    <label for="password2">Profile Pic</label>
+                {% render_field customerForm.profile_pic class="form-control" placeholder="Profile pic" %}
+                </div>
+
+                <hr class="mb-4">
+ 
+                <button class="btn btn-lg btn-warning btn-block" type="submit">Create account</button>
+                <div class="d-flex mt-3">
+                    <a class="ml-auto" href="{% url 'login' %}" role="button" style="text-decoration: none;">Already have an account? login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+      

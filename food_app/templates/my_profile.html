@@ -1,0 +1,58 @@
+{% extends "header.html" %}
+{% load static %}
+{% block header %}
+<header>
+    <div id="logo">
+        <a href="/index" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+        <a href="/index" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="/index" >Home</a></li>
+            <li class="nav-item"><a href="/cart">Cart</a></li>
+            <li class="nav-item"><a href="/logout">Logout</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color: #c8c8c8;
+        }
+        .container{
+            margin-top: 100px;
+            font-size: 22px;
+            color: black;
+            background-color: white;
+            width: 500px;
+            height: 300px;
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 30px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="col-sm-4 col-md-4">
+            <blockquote>
+                <p>Username:    {{request.user}}</p> <p>Address:{{customer.address}}</p>
+            </blockquote>
+            <p><i class="glyphicon glyphicon-phone"></i>Contact:{{customer.mobile}}
+            </p>
+        </div>
+        
+<div style="text-align: center; margin-left: 300px;margin-top: 50px;">
+    <a href="/edit_profile"><button class="btn btn-primary btn-lg" ><span>Edit Profile </span></button></a>
+  </div>
+</div>
+<br>
+</body>
+{% endblock content %}

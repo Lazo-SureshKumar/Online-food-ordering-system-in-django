@@ -1,0 +1,29 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block header %}
+<header>
+    <div id="logo">
+        <a href="/home" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+        <a href="/home" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="/" >Home</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+{% endblock %}
+{% block content %}
+<br><br><br>
+
+<center>
+    <h2>You've logged out successfully!</h2>
+</center>
+
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br>
+
+{% endblock content %}

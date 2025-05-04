@@ -1,0 +1,108 @@
+{% extends "header.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block header %}
+    <header>
+        <div id="logo">
+            <a href="/index" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+            <a href="/index" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+        </div>
+        <nav>
+            <ul>
+                <li class="nav-item"><a href="/index" >Home</a></li>
+                <li class="nav-item"><a href="/my_order">My Order</a></li>
+                <li class="nav-item"><a href="/logout">Logout</a></li>
+    
+            </ul>
+        </nav>
+    
+    </header>
+    {% endblock %}
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <style>
+        body{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .panel-title {
+            display: inline;
+            font-weight: bold;
+        }
+        .container{
+            
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <center><i>This is a FAKE PAYMENT. Just for demo purpose</i></center>
+<br><br>
+<div class="container" style="text-align:center;background-color: wheat;">
+    <div class="row">
+        <div class=" col-md-6" style="height:500px; width:600px;">
+            <div class="panel panel-default" style="background-color: wheat;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Payment Details
+                    </h3>
+                </div>
+                <br>
+                <div class="panel-body" >
+                    <form role="form" method="post">
+                    <div class="form-group">
+                        <label for="cardNumber">
+                            CARD NUMBER</label>
+                        <div class="input">
+                            <input type="text" class="form-control" id="cardNumber" placeholder="xxxx xxxx xxxx xxxx"
+                                required autofocus />
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-4 col-md-4 pull-left">
+                            <div class="form-group">
+                                <label for="cvCode">
+                                    MONTH</label>
+                                
+                                    <input type="text" class="form-control" id="expityMonth" placeholder="MM - 02" required />
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4 col-md-4">
+                            <div class="form-group">
+                                <label for="expityMonth">
+                                    EXPIRY DATE</label>                             
+                                    <input type="text" class="form-control" id="expityYear" placeholder="YY - 22" required /></div>                            
+                        </div>
+                        <div class="col-xs-4 col-md-4 pull-right">
+                            <div class="form-group">
+                                <label for="cvCode">
+                                    CV CODE</label>
+                                <input type="password" class="form-control" id="cvCode" placeholder="CV - xxx" required />
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <br>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#" style="text-decoration: none;color: black;font-size: 20px;margin-left: 200px;">
+                     Final Payment:<span style="color: black;font-size: 20px;"> &#x20b9 {{total}}</span></a>
+                </li>
+            </ul>
+            <br/>
+            <a href="/payment_success" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
+

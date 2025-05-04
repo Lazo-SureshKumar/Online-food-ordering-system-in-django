@@ -1,0 +1,45 @@
+{% extends "header.html" %}
+{% load static %}
+{% block header %}
+<header>
+    <div id="logo">
+        <a href="/index" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+        <a href="/index" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="/index" >Home</a></li>
+            <li class="nav-item"><a href="/my_order">My Order</a></li>
+            <li class="nav-item"><a href="/logout">Logout</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+{% endblock %}
+{% block content %}
+<head>
+<style>
+  .success-page{
+    margin-top: 100px;
+    margin-left: 500px;
+  }
+  img{
+    width: 100px;
+    height: 100px;
+  }
+</style>
+</head>
+<body>
+    <div class="success-page" style="top:auto;">
+        <img  src="{% static 'images/success.png' %}" class="center" alt="" />
+        
+       <h2>Order Successful !</h2>
+       <p>We are delighted to inform you that your order placed.</p>
+       <a style="text-decoration:none;" href="/my_order" class="btn btn-success btn-lg">View Orders/Track Orders</a>
+       <a style="text-decoration:none;" href="/index">Continue Order</a>
+    </div>
+</body>
+
+
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends "header.html" %}
+{% load static %}
+{% block header %}
+<header>
+    <div id="logo">
+        <a href="/home" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+        <a href="/home" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="/index" >Home</a></li>
+            <li class="nav-item"><a href="/my_profile">My Profile</a></li>
+            <li class="nav-item"><a href="/logout">Logout</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .cancel{
+            margin-left: 500px;
+            margin-top: 100px;
+        }
+        .canceled{
+            margin-left: 90px;
+            font-size: 40px;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="cancel">
+        {% if total %}        
+        <p style="color: black;font-size: 20px;">The Amount will be created on your bank within 24 hours</p>
+        <span class="canceled">Order Canceld</span>
+        <br>
+        <span style="margin-left: 150px;color: black;font-size: 30px;">Total : {{total}}</span>
+        {% endif %}
+    </div> 
+</body>
+{% endblock content %}

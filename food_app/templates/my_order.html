@@ -1,0 +1,100 @@
+{% extends "header.html" %}
+{% load static %}{% block header %}
+<header>
+    <div id="logo">
+        <a href="/index" class="a"><img src="{% static 'images/logo.jpg'%}" class="logo_img"></a>
+        <a href="/index" class="a"><h3 class="h3">Online Food Ordering System</h3></a>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="/index" >Home</a></li>
+            <li class="nav-item"><a href="/cart">Cart</a></li>
+            <li class="nav-item"><a href="/my_profile">My Profile</a></li>
+            <li class="nav-item"><a href="/logout">Logout</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container1{
+            justify-items: center;
+            
+        }
+        .cancel{
+            border: 1px solid rgb(19, 184, 19);
+            background-color: rgb(19, 184, 19);
+            padding: 9px;
+            border-radius: 8px;
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    {% if total != 0 %}
+            <div class="container">
+                <header class="card-header" style="font-size: 21px;color: black; font-weight: bold;margin-left: 200px;"> My Orders / Tracking </header>
+                <table class="table table-triped table-bordered mydatatable" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Item Image</th>
+                            <th>Item Name</th>
+                            <th>Item Price</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    {% for Items,order in data %} 
+                    {%for Item in Items%}   
+                    <tr>
+                    <td>
+                        <img src="{% static Item.image.url %}" class="img-sm border" style="height: 50px;width: 100px;">
+                    </td>
+                    <td>
+                        <p class="title"><strong>{{Item.name}}</strong></p>
+                    </td>
+                    <td>
+                        <strong>&#x20b9 {{Item.price}}</strong>
+                    </td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+                
+            </div> 
+            <div class="container1" > 
+                <h3>Total: {{total}}</h3>
+                <div class="col">
+                     <strong>Status:</strong> 
+                {% if status == 'Pending'%}
+                <td> <span class="badge bg-primary" style="font-size: 12px; border-radius: 30px;">{{status}}</span></td>
+                {% elif status == 'Delivered' %}
+                <td> <span class="badge bg-success" style="font-size: 12px; border-radius: 30px;">{{status}}</span></td>
+                {% elif status == 'Out for Delivery' %}
+                <td> <span class="badge bg-danger" style="font-size: 12px; border-radius: 30px;">{{status}}</span></td>
+                {%else%}
+                <td> <span class="badge bg-primary" style="font-size: 12px; border-radius: 30px;">{{status}}</span></td>
+                {%endif%}
+                {% if addreses %}
+                <div class="col address"> <strong>Delivery Address:</strong>  {{addreses}}</div>
+                {% endif %}
+                {% if status == 'Pending'%}
+                <div style="margin-top: 12px;" >
+                    <a href="cancel_order_view" class="cancel">Cancel Order </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>          
+        {% else %}
+        <div>
+            <p style="text-align: center;font-weight: bold;font-size: 40px;margin-top: 100px;">Order Something...</p>
+        </div>
+        {% endif %}
+</body>
+{% endblock content %}
