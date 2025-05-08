@@ -8,11 +8,16 @@ The user has to select amongst the available food choices.After all, the user ca
 And finally the user can place order.After place order,the user can view all food orders or cancel order.
 when cancel the order if you pay through online it will return to your account after.
 
+![Screenshot (64)](https://github.com/user-attachments/assets/f46dcb32-1215-488b-8952-2b4bb44020b0)
+
+
 ## Admin Panel:
 On the other hand,the user can access the Django Administrator panel by providing admin credentials.
 The Django adminstrator panel contains all the management sides of the system.It includes management of 
 food menu,user,and orders.The admin can simply add more food items by providing details such as name,descrption,price,
 and image to it.And admin simply change status as a delivered.
+
+![Screenshot (65)](https://github.com/user-attachments/assets/12b5eafe-f7a8-4236-9179-f9f0e3b4a038)
 
 ### Features:
     Customer Panel
